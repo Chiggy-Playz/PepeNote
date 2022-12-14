@@ -3,7 +3,7 @@ on:
     # Trigger on tag push
     push:
       tags:
-        - "v*.*.*"
+        - "*"
 jobs:
   build:
     runs-on: ubuntu-latest
