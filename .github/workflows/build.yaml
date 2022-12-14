@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Get tag annotation
+      id: tag-data
+      uses: ericcornelissen/git-tag-annotation-action@v2
+    
     - name: Setup Java
       uses: actions/setup-java@v1
       with:
@@ -30,3 +34,4 @@ jobs:
       with:
         artifacts: "build/app/outputs/apk/release/*.apk"
         token: ${{ secrets.RELEASES_TOKEN }}
+        name: ${{ steps.tag-data.outputs.git-tag-annotation }}
