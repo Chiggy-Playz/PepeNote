@@ -1,0 +1,32 @@
+name: Create apps workflow
+on:
+    # Trigger on tag push
+    push:
+      tags:
+        - "v*.*.*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: "19.x"
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
+      with:
+        flutter-version: "3.3.0"
+
+    - name: Pub Get Packages
+      run: flutter pub get
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    - name: Create Github Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/apk/release/*.apk"
+        token: ${{ secrets.RELEASES_TOKEN }}
