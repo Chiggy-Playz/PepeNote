@@ -1,4 +1,4 @@
-# PepeNotes
+# PepeNote
 
 A notes app made for presentation purposes using flutter.
 
