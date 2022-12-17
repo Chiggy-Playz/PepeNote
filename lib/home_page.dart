@@ -23,8 +23,10 @@ class _HomePageState extends State<HomePage> {
         subtitle: Text(
           note.content,
           overflow: TextOverflow.ellipsis,
+          maxLines: 2,
         ),
         onTap: () => pushNotePage(note, index),
+        isThreeLine: true,
       ),
     );
   }
